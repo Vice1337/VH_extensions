@@ -265,5 +265,5 @@ else
 end
 end
 for i,v in pairs(TempTable) do
-    petcounter:Label(i, #v)
+    print(i, #v)
 end
