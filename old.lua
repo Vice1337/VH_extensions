@@ -1,39 +1,4 @@
 
---[[
-docs so far:
-
-<notification> library:Notify(<string> title, <string> description, <number> duration)
-<library> local Main = library:Create(<string> title, <udim2> size)
-<tab> local T1 = Main:Tab(<string> title, <imageid> image, <string> maintext, <string> secondarytext)
-<subtab> local T1ST1 = T1:SubTab(<string> title, <imageid> image)
-<items> T1ST1:Label(<string> side, <string> title, <imageid> image)
-<items> T1ST1:Toggle(<string> side, <string> title, callback())
-<items> T1ST1:Slider(<string> side, <string> title, <string> min, <string> max, <string> inc, callback())
-<items> T1ST1:Dropdown(<string> side, <string> title, <string> default, <table> options, callback())
-
-]]
-
-
-getgenv().ViceHubSettingsTable = {
-    MainTab = {
-        AutoFarming = false,
-        GodModewater = false,
-        ClaimGold = false,
-        InfiniteJump = false,
-        FarmingSpeed = 25
-    },
-    AutoBuy = {
-        CommonChest = false,
-        UnCommonChest = false,
-        LegendaryChest = false,
-        EpicChest = false,
-        RareChest = false,
-        Amount = 1,
-        buydelay = 1
-    },
-}
-
-
 --- PRE UI STUFF ---
 
 if game.CoreGui:FindFirstChild("Vice") then
@@ -905,144 +870,93 @@ TabImage.Image = "rbxassetid://10272150497"
 					print('please select a side for the ' .. text .. ' label')
 				end
 			end
-            --[[
-                		function ContainerItems:Button(text, callback)
-			local Button = Instance.new("TextButton")
-			local ButtonCorner = Instance.new("UICorner")
-
-			Button.Name = "Button"
-			Button.Parent = Container
-			Button.BackgroundColor3 = Color3.fromRGB(43, 43, 60)
-			Button.Size = UDim2.new(0, 403, 0, 28)
-			Button.AutoButtonColor = false
-			Button.Font = Enum.Font.Gotham
-			Button.TextColor3 = Color3.fromRGB(255, 255, 255)
-			Button.TextSize = 14.000
-			Button.Text = text
-
-			ButtonCorner.CornerRadius = UDim.new(0, 6)
-			ButtonCorner.Name = "ButtonCorner"
-			ButtonCorner.Parent = Button
-
-			Button.MouseEnter:Connect(
-				function()
-					TweenService:Create(
-						Button,
-						TweenInfo.new(.2, Enum.EasingStyle.Quad),
-						{BackgroundColor3 = Color3.fromRGB(34, 34, 57)}
-					):Play()
-				end
-			)
-			Button.MouseLeave:Connect(
-				function()
-					TweenService:Create(
-						Button,
-						TweenInfo.new(.2, Enum.EasingStyle.Quad),
-						{BackgroundColor3 = Color3.fromRGB(43, 43, 60)}
-					):Play()
-				end
-			)
-
-			Container.CanvasSize = UDim2.new(0, 0, 0, ContainerLayout.AbsoluteContentSize.Y)
-
-			Button.MouseButton1Click:Connect(
-				function()
-					pcall(callback)
-					Button.TextSize = 0
-					TweenService:Create(Button, TweenInfo.new(.2, Enum.EasingStyle.Quad), {TextSize = 17}):Play()
-					wait(.2)
-					TweenService:Create(Button, TweenInfo.new(.2, Enum.EasingStyle.Quad), {TextSize = 14}):Play()
-				end
-			)
-		end
-            ]]
-            --buton
-			function items:Toggle2(side, text, callback)
-				local Toggle2 = Instance.new("Frame")
-				Toggle2.Name = tostring(text)
-				Toggle2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Toggle2.BackgroundTransparency = 1.000
-				Toggle2.BorderColor3 = Color3.fromRGB(27, 42, 53)
-				Toggle2.BorderSizePixel = 0
-				Toggle2.Size = UDim2.new(1, 0, 0, 36)
+-- toggle2
+			function items:Toggles(side, text, callback)
+				local Toggles = Instance.new("Frame")
+				Toggles.Name = tostring(text)
+				Toggles.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Toggles.BackgroundTransparency = 1.000
+				Toggles.BorderColor3 = Color3.fromRGB(27, 42, 53)
+				Toggles.BorderSizePixel = 0
+				Toggles.Size = UDim2.new(1, 0, 0, 36)
 				
-				local ToggleOutline = Instance.new("UIStroke")
-				ToggleOutline.Enabled = true
-				ToggleOutline.Parent = Toggle2
-				ToggleOutline.Color = Color3.fromRGB(31, 26, 61)
-				ToggleOutline.LineJoinMode = Enum.LineJoinMode.Miter
-				ToggleOutline.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
-				ToggleOutline.Thickness = 1
-				ToggleOutline.Transparency = 0
+				local TogglesOutline = Instance.new("UIStroke")
+				TogglesOutline.Enabled = true
+				TogglesOutline.Parent = Toggles
+				TogglesOutline.Color = Color3.fromRGB(31, 26, 61)
+				TogglesOutline.LineJoinMode = Enum.LineJoinMode.Miter
+				TogglesOutline.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
+				TogglesOutline.Thickness = 1
+				TogglesOutline.Transparency = 0
 				
-				local ToggleTitle = Instance.new("TextLabel")
-				ToggleTitle.Name = "ToggleTitle"
-				ToggleTitle.Parent = Toggle2
-				ToggleTitle.AnchorPoint = Vector2.new(1, 0.5)
-				ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				ToggleTitle.BackgroundTransparency = 1.000
-				ToggleTitle.Position = UDim2.new(1, 0, 0.5, 0)
-				ToggleTitle.Size = UDim2.new(1, -21, 1, 0)
-				ToggleTitle.Font = Enum.Font.GothamMedium
-				ToggleTitle.Text = text
-				ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-				ToggleTitle.TextSize = 12.000
-				ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
+				local TogglesTitle = Instance.new("TextLabel")
+				TogglesTitle.Name = "ToggleTitle"
+				TogglesTitle.Parent = Toggles
+				TogglesTitle.AnchorPoint = Vector2.new(1, 0.5)
+				TogglesTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				TogglesTitle.BackgroundTransparency = 1.000
+				TogglesTitle.Position = UDim2.new(1, 0, 0.5, 0)
+				TogglesTitle.Size = UDim2.new(1, -21, 1, 0)
+				TogglesTitle.Font = Enum.Font.GothamMedium
+				TogglesTitle.Text = text
+				TogglesTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+				TogglesTitle.TextSize = 12.000
+				TogglesTitle.TextXAlignment = Enum.TextXAlignment.Left
 				
-				local ToggleFrameBack = Instance.new("Frame")
-				ToggleFrameBack.Name = "ToggleFrameBack"
-				ToggleFrameBack.Parent = Toggle2
-				ToggleFrameBack.AnchorPoint = Vector2.new(1, 0.5)
-				ToggleFrameBack.BackgroundColor3 = Color3.fromRGB(33, 28, 64)
-				ToggleFrameBack.Position = UDim2.new(1, -12, 0.5, 0)
-				ToggleFrameBack.Size = UDim2.new(0, 36, 0, 18)
+				local TogglesFrameBack = Instance.new("Frame")
+				TogglesFrameBack.Name = "ToggleFrameBack"
+				TogglesFrameBack.Parent = Toggles
+				TogglesFrameBack.AnchorPoint = Vector2.new(1, 0.5)
+				TogglesFrameBack.BackgroundColor3 = Color3.fromRGB(33, 28, 64)
+				TogglesFrameBack.Position = UDim2.new(1, -12, 0.5, 0)
+				TogglesFrameBack.Size = UDim2.new(0, 36, 0, 18)
 				
-				local ToggleFrameBackCorner = Instance.new("UICorner")
-				ToggleFrameBackCorner.CornerRadius = UDim.new(1, 0)
-				ToggleFrameBackCorner.Name = "ToggleFrameBackCorner"
-				ToggleFrameBackCorner.Parent = ToggleFrameBack
+				local TogglesFrameBackCorner = Instance.new("UICorner")
+				TogglesFrameBackCorner.CornerRadius = UDim.new(1, 0)
+				TogglesFrameBackCorner.Name = "ToggleFrameBackCorner"
+				TogglesFrameBackCorner.Parent = TogglesFrameBack
 				
-				local ToggleFrameCircle = Instance.new("Frame")
-				ToggleFrameCircle.Name = "ToggleFrameCircle"
-				ToggleFrameCircle.Parent = ToggleFrameBack
-				ToggleFrameCircle.AnchorPoint = Vector2.new(0, 0.5)
-				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				ToggleFrameCircle.Position = UDim2.new(0, 3, 0.5, 0)
-				ToggleFrameCircle.Size = UDim2.new(0, 14, 0, 14)
+				local TogglesFrameCircle = Instance.new("Frame")
+				TogglesFrameCircle.Name = "ToggleFrameCircle"
+				TogglesFrameCircle.Parent = TogglesFrameBack
+				TogglesFrameCircle.AnchorPoint = Vector2.new(0, 0.5)
+				TogglesFrameCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				TogglesFrameCircle.Position = UDim2.new(0, 3, 0.5, 0)
+				TogglesFrameCircle.Size = UDim2.new(0, 14, 0, 14)
 				
-				local ToggleFrameCircleCorner = Instance.new("UICorner")
-				ToggleFrameCircleCorner.CornerRadius = UDim.new(1, 0)
-				ToggleFrameCircleCorner.Name = "ToggleFrameCircleCorner"
-				ToggleFrameCircleCorner.Parent = ToggleFrameCircle
+				local TogglesFrameCircleCorner = Instance.new("UICorner")
+				TogglesFrameCircleCorner.CornerRadius = UDim.new(1, 0)
+				TogglesFrameCircleCorner.Name = "ToggleFrameCircleCorner"
+				TogglesFrameCircleCorner.Parent = TogglesFrameCircle
 				
-				local ToggleInteract = Instance.new("TextButton")
-				ToggleInteract.Name = "ToggleInteract"
-				ToggleInteract.Parent = Toggle2
-				ToggleInteract.AnchorPoint = Vector2.new(0.5, 0.5)
-				ToggleInteract.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				ToggleInteract.BackgroundTransparency = 1.000
-				ToggleInteract.Position = UDim2.new(0.5, 0, 0.5, 0)
-				ToggleInteract.Size = UDim2.new(1, 0, 1, 0)
-				ToggleInteract.Font = Enum.Font.SourceSans
-				ToggleInteract.Text = ""
-				ToggleInteract.TextColor3 = Color3.fromRGB(0, 0, 0)
-				ToggleInteract.TextSize = 14.000
+				local TogglesInteract = Instance.new("TextButton")
+				TogglesInteract.Name = "ToggleInteract"
+				TogglesInteract.Parent = Toggles
+				TogglesInteract.AnchorPoint = Vector2.new(0.5, 0.5)
+				TogglesInteract.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				TogglesInteract.BackgroundTransparency = 1.000
+				TogglesInteract.Position = UDim2.new(0.5, 0, 0.5, 0)
+				TogglesInteract.Size = UDim2.new(1, 0, 1, 0)
+				TogglesInteract.Font = Enum.Font.SourceSans
+				TogglesInteract.Text = ""
+				TogglesInteract.TextColor3 = Color3.fromRGB(0, 0, 0)
+				TogglesInteract.TextSize = 14.000
 				
 				local toggled = false
-				ToggleInteract.MouseButton1Click:Connect(function()
+				TogglesInteract.MouseButton1Click:Connect(function()
 					toggled = not toggled
 					if toggled then
-						game.TweenService:Create(ToggleFrameCircle, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+						game.TweenService:Create(TogglesFrameCircle, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 							Position = UDim2.new(0, 20, 0.5, 0)
 						}):Play()
-						game.TweenService:Create(ToggleFrameBack, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+						game.TweenService:Create(TogglesFrameBack, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 							BackgroundColor3 = Color3.fromRGB(107, 89, 222)
 						}):Play()
 					else
-						game.TweenService:Create(ToggleFrameCircle, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+						game.TweenService:Create(TogglesFrameCircle, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 							Position = UDim2.new(0, 3, 0.5, 0)
 						}):Play()
-						game.TweenService:Create(ToggleFrameBack, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+						game.TweenService:Create(TogglesFrameBack, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
 							BackgroundColor3 = Color3.fromRGB(33, 28, 64)
 						}):Play()
 					end
@@ -1050,77 +964,11 @@ TabImage.Image = "rbxassetid://10272150497"
 				end)
 				
 				if side == 'Left' then
-					Toggle.Parent = Left
+					Toggles.Parent = Left
 				elseif side == 'Right' then
-					Toggle.Parent = Right
+					Toggles.Parent = Right
 				else
-					Toggle:Destroy()
-					print('please select a side for the ' .. text .. ' label')
-				end
-			end
-            function items:Button(side, text, callback)
-				local Button = Instance.new("Frame")
-				Button.Name = tostring(text)
-				Button.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				Button.BackgroundTransparency = 1.000
-				Button.BorderColor3 = Color3.fromRGB(27, 42, 53)
-				Button.BorderSizePixel = 0
-				Button.Size = UDim2.new(1, 0, 0, 36)
-				
-				local ToggleOutline = Instance.new("UIStroke")
-				ToggleOutline.Enabled = true
-				ToggleOutline.Parent = Button
-				ToggleOutline.Color = Color3.fromRGB(31, 26, 61)
-				ToggleOutline.LineJoinMode = Enum.LineJoinMode.Miter
-				ToggleOutline.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
-				ToggleOutline.Thickness = 1
-				ToggleOutline.Transparency = 0
-				
-				local ToggleTitle = Instance.new("TextLabel")
-				ToggleTitle.Name = "ToggleTitle"
-				ToggleTitle.Parent = Button
-				ToggleTitle.AnchorPoint = Vector2.new(1, 0.5)
-				ToggleTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				ToggleTitle.BackgroundTransparency = 1.000
-				ToggleTitle.Position = UDim2.new(1, 0, 0.5, 0)
-				ToggleTitle.Size = UDim2.new(1, -21, 1, 0)
-				ToggleTitle.Font = Enum.Font.GothamMedium
-				ToggleTitle.Text = text
-				ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
-				ToggleTitle.TextSize = 12.000
-				ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
-				
-	
---[[
-                
-			Button.MouseEnter:Connect(
-				function()
-					TweenService:Create(
-						Button,
-						TweenInfo.new(.2, Enum.EasingStyle.Quad),
-						{BackgroundColor3 = Color3.fromRGB(34, 34, 57)}
-					):Play()
-				end
-			)
-			Button.MouseLeave:Connect(
-				function()
-					TweenService:Create(
-						Button,
-						TweenInfo.new(.2, Enum.EasingStyle.Quad),
-						{BackgroundColor3 = Color3.fromRGB(43, 43, 60)}
-					):Play()
-				end
-			)
-
-
-
-	]]			
-				if side == 'Left' then
-					Toggle.Parent = Left
-				elseif side == 'Right' then
-					Toggle.Parent = Right
-				else
-					Toggle:Destroy()
+					Toggles:Destroy()
 					print('please select a side for the ' .. text .. ' label')
 				end
 			end
@@ -2182,13 +2030,3 @@ function lib:Notify(title, desc, dur)
 	end)()
 end
 return lib
-
-
-
-
-
-
-
-
-
-
