@@ -1,4 +1,185 @@
 
+--[[
+docs so far:
+
+<notification> library:Notify(<string> title, <string> description, <number> duration)
+<library> local Main = library:Create(<string> title, <udim2> size)
+<tab> local T1 = Main:Tab(<string> title, <imageid> image, <string> maintext, <string> secondarytext)
+<subtab> local T1ST1 = T1:SubTab(<string> title, <imageid> image)
+<items> T1ST1:Label(<string> side, <string> title, <imageid> image)
+<items> T1ST1:Toggle(<string> side, <string> title, callback())
+<items> T1ST1:Slider(<string> side, <string> title, <string> min, <string> max, <string> inc, callback())
+<items> T1ST1:Dropdown(<string> side, <string> title, <string> default, <table> options, callback())
+
+]]
+
+
+getgenv().ViceHubSettingsTable = {
+    MainTab = {
+        AutoFarming = false,
+        GodModewater = false,
+        ClaimGold = false,
+        InfiniteJump = false,
+        FarmingSpeed = 25
+    },
+    AutoBuy = {
+        CommonChest = false,
+        UnCommonChest = false,
+        LegendaryChest = false,
+        EpicChest = false,
+        RareChest = false,
+        Amount = 1,
+        buydelay = 1
+    },
+}
+
+function emreningotunusikm() -- FARMING FUNCT
+    game.workspace.Gravity = 0
+    game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart").CFrame = CFrame.new(-51.1823959, 80.6168747, -536.437805)
+    tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed, Enum.EasingStyle.Linear)
+    tween =
+        tweenService:Create(
+        game:GetService("Players")["LocalPlayer"].Character:WaitForChild("HumanoidRootPart"),
+        tweenInfo,
+        {CFrame = CFrame.new(-60.5737877, 53.9498825, 8666.35059)}
+    )
+    tween:Play()
+    wait(getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed)
+    tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(0, Enum.EasingStyle.Linear)
+    tween =
+        tweenService:Create(
+        game:GetService("Players")["LocalPlayer"].Character:WaitForChild("HumanoidRootPart"),
+        tweenInfo,
+        {CFrame = CFrame.new(-55.5486526, -360.063782, 9489.0498)}
+    )
+    tween:Play()
+    game.workspace.Gravity = 196.2
+end
+
+
+
+local library = loadstring(game:HttpGet("https://vice.lol/library.lua", true))()
+
+library:Notify('Hi', 'Title test 17 seconds', 17)
+library:Notify('Hi', 'Title test 5 seconds', 5)
+
+local Main = library:Create('Library Test', UDim2.new(0, 700, 0, 625))
+
+local T1 = Main:Tab('HOME', 10063341801, 'Hello, ' .. game.Players.LocalPlayer.Name .. " Welcome to Vice Hub", 'UI Test') -- page 1 and Description 
+
+local T2 = Main:Tab('LEGITBOT', 10063288907, 'This is Tab 2', 'Do even more stuff here.') -- UI LIBRARY  [ PAGE 2 ]
+
+local T3 = Main:Tab('RAGEBOT', 10063358041, 'This is Tab 2', 'Do even more stuff here.')  -- UI LIBRARY  [ PAGE 3 ]
+
+
+local T1ST1 = T1:SubTab('FARMING', 10063341801) -- TAB 1 >>>> [ PAGE 2 ] SubTab
+
+T1ST1:Label('Left', 'Auto Farm ', 6031280882) -- section 
+
+T1ST1:Toggle('Left', 'Auto Gold Farm', function(State) -- TOGGLE  on/off
+    getgenv().ViceHubSettingsTable.MainTab.AutoFarming = State
+    game:GetService("RunService").Stepped:connect(
+        function()
+            if getgenv().ViceHubSettingsTable.MainTab.AutoFarming then
+                game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):ChangeState(11)
+            end
+        end
+    )
+    
+    if getgenv().ViceHubSettingsTable.MainTab.AutoFarming then
+        emreningotunusikm()
+    end
+    
+    if not getgenv().ViceHubSettingsTable.MainTab.AutoFarming then
+        game.Players.LocalPlayer.Character.Head:Destroy()
+    end
+    game.Players.LocalPlayer.CharacterAdded:Connect(
+        function()
+            repeat
+                wait()
+            until game.Players.LocalPlayer.Character
+            wait(3)
+            if getgenv().ViceHubSettingsTable.MainTab.AutoFarming then
+                emreningotunusikm()
+            end
+        end
+    )
+end)
+
+
+
+speedlist = {
+    "Very Fast",
+    "Fast",
+    "Normal (Ideal)",
+    "Slow",
+    "Very Low",
+    "ULTRA SLOW"
+}
+
+T1ST1:Dropdown('Left', "Farming Speed", 'Normal (Current)', speedlist, function(farmspeedmetchf)
+    if farmspeedmetchf == "Very Fast" then
+        getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed = 10
+    elseif farmspeedmetchf == "Fast" then
+        getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed = 17
+    elseif farmspeedmetchf == "Normal (Ideal)" then
+        getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed = 24
+    elseif farmspeedmetchf == "Slow" then
+        getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed = 35
+    elseif farmspeedmetchf == "Very Slow" then
+        getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed = 40
+    elseif farmspeedmetchf == "ULTRA SLOW" then
+        getgenv().ViceHubSettingsTable.MainTab.FarmingSpeed = 68
+    end
+end)
+
+--[[ 
+testlist = {
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12"
+}
+T1ST1:Dropdown('Left', 'Aimbone', 'Select', testlist, function(v)
+    library:Notify('Dropdown Notification', tostring(v), 3)
+end)
+]]
+
+T1ST1:Slider('Left', 'S1', '0', '100', '1', function(v)
+    print(v)
+end)
+
+
+
+T1ST1:Label('Right', '2', 6031280882)
+
+local T1ST2 = T1:SubTab('Minigames', 10063377021)
+
+T1ST2:Label('Left', 'Label on Tab 1 Sub Tab 2', 6031280882)
+
+
+local T2ST1 = T2:SubTab('Aimbot', 10063461239)
+
+local T2ST2 = T2:SubTab('Misc', 10063472975)
+
+local T2ST3 = T2:SubTab('Trigger', 10063480247)
+
+
+
+
+
+
+
+
+
 
 
 --- PRE UI STUFF ---
@@ -978,9 +1159,7 @@ TabImage.Image = "rbxassetid://10272150497"
 				end
 			)
 
-			Container.CanvasSize = UDim2.new(0, 0, 0, ContainerLayout.AbsoluteContentSize.Y)
 
-		end
 
 				
 				
@@ -2051,4 +2230,13 @@ function lib:Notify(title, desc, dur)
 	end)()
 end
 return lib
+
+
+
+
+
+
+
+
+
 
