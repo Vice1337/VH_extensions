@@ -962,6 +962,38 @@ TabImage.Image = "rbxassetid://10272150497"
 					end
 					pcall(callback, toggled)
 				end)
+
+				Toggles.MouseEnter:Connect(
+				function()
+					TweenService:Create(
+						Button,
+						TweenInfo.new(.2, Enum.EasingStyle.Quad),
+						{BackgroundColor3 = Color3.fromRGB(34, 34, 57)}
+					):Play()
+				end
+			)
+			Toggles.MouseLeave:Connect(
+				function()
+					TweenService:Create(
+						Button,
+						TweenInfo.new(.2, Enum.EasingStyle.Quad),
+						{BackgroundColor3 = Color3.fromRGB(43, 43, 60)}
+					):Play()
+				end
+			)
+
+			Container.CanvasSize = UDim2.new(0, 0, 0, ContainerLayout.AbsoluteContentSize.Y)
+
+			Toggles.MouseButton1Click:Connect(
+				function()
+					pcall(callback)
+					Button.TextSize = 0
+					TweenService:Create(Button, TweenInfo.new(.2, Enum.EasingStyle.Quad), {TextSize = 17}):Play()
+					wait(.2)
+					TweenService:Create(Button, TweenInfo.new(.2, Enum.EasingStyle.Quad), {TextSize = 14}):Play()
+				end
+			)
+		end
 				
 				if side == 'Left' then
 					Toggles.Parent = Left
