@@ -3,8 +3,6 @@
 
 
 
-
-
 --- PRE UI STUFF ---
 
 if game.CoreGui:FindFirstChild("Vice") then
@@ -961,7 +959,7 @@ TabImage.Image = "rbxassetid://10272150497"
 				ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
 				
 	
-
+--[[
                 
 			Button.MouseEnter:Connect(
 				function()
@@ -984,8 +982,7 @@ TabImage.Image = "rbxassetid://10272150497"
 
 
 
-				
-				
+	]]			
 				if side == 'Left' then
 					Toggle.Parent = Left
 				elseif side == 'Right' then
