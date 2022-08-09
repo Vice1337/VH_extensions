@@ -800,33 +800,7 @@ TabImage.Image = "rbxassetid://10272150497"
 				ToggleTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 				ToggleTitle.TextSize = 12.000
 				ToggleTitle.TextXAlignment = Enum.TextXAlignment.Left
-				
-				local ToggleFrameBack = Instance.new("Frame")
-				ToggleFrameBack.Name = "ToggleFrameBack"
-				ToggleFrameBack.Parent = Toggle
-				ToggleFrameBack.AnchorPoint = Vector2.new(1, 0.5)
-				ToggleFrameBack.BackgroundColor3 = Color3.fromRGB(33, 28, 64)
-				ToggleFrameBack.Position = UDim2.new(1, -12, 0.5, 0)
-				ToggleFrameBack.Size = UDim2.new(0, 36, 0, 18)
-				
-				local ToggleFrameBackCorner = Instance.new("UICorner")
-				ToggleFrameBackCorner.CornerRadius = UDim.new(1, 0)
-				ToggleFrameBackCorner.Name = "ToggleFrameBackCorner"
-				ToggleFrameBackCorner.Parent = ToggleFrameBack
-				
-				local ToggleFrameCircle = Instance.new("Frame")
-				ToggleFrameCircle.Name = "ToggleFrameCircle"
-				ToggleFrameCircle.Parent = ToggleFrameBack
-				ToggleFrameCircle.AnchorPoint = Vector2.new(0, 0.5)
-				ToggleFrameCircle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-				ToggleFrameCircle.Position = UDim2.new(0, 3, 0.5, 0)
-				ToggleFrameCircle.Size = UDim2.new(0, 14, 0, 14)
-				
-				local ToggleFrameCircleCorner = Instance.new("UICorner")
-				ToggleFrameCircleCorner.CornerRadius = UDim.new(1, 0)
-				ToggleFrameCircleCorner.Name = "ToggleFrameCircleCorner"
-				ToggleFrameCircleCorner.Parent = ToggleFrameCircle
-				
+			
 				local ToggleInteract = Instance.new("TextButton")
 				ToggleInteract.Name = "ToggleInteract"
 				ToggleInteract.Parent = Toggle
@@ -839,27 +813,6 @@ TabImage.Image = "rbxassetid://10272150497"
 				ToggleInteract.Text = ""
 				ToggleInteract.TextColor3 = Color3.fromRGB(0, 0, 0)
 				ToggleInteract.TextSize = 14.000
-				
-				local toggled = false
-				ToggleInteract.MouseButton1Click:Connect(function()
-					toggled = not toggled
-					if toggled then
-						game.TweenService:Create(ToggleFrameCircle, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							Position = UDim2.new(0, 20, 0.5, 0)
-						}):Play()
-						game.TweenService:Create(ToggleFrameBack, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							BackgroundColor3 = Color3.fromRGB(107, 89, 222)
-						}):Play()
-					else
-						game.TweenService:Create(ToggleFrameCircle, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							Position = UDim2.new(0, 3, 0.5, 0)
-						}):Play()
-						game.TweenService:Create(ToggleFrameBack, TweenInfo.new(lib.Animations.ElementsAS, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-							BackgroundColor3 = Color3.fromRGB(33, 28, 64)
-						}):Play()
-					end
-					pcall(callback, toggled)
-				end)
 				
 				if side == 'Left' then
 					Toggle.Parent = Left
