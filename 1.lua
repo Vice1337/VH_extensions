@@ -15,6 +15,7 @@ local Mouse = LocalPlayer:GetMouse()
 local RunService = game:GetService("RunService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 
+
 local function Drag(drag, frame) 
 	pcall(function()
 		local dragging = false
@@ -839,7 +840,23 @@ TabImage.Image = "rbxassetid://10272150497"
 				ToggleInteract.Text = ""
 				ToggleInteract.TextColor3 = Color3.fromRGB(0, 0, 0)
 				ToggleInteract.TextSize = 14.000
-				
+
+			
+				Toggle.MouseEnter:Connect(function()
+					game.TweenService:Create(Toggle, TweenInfo.new(0, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+						BackgroundColor3 = Color3.fromRGB(107, 89, 222)
+					}):Play()
+				end)
+				Toggle.MouseLeave:Connect(function()
+					game.TweenService:Create(Toggle, TweenInfo.new(0, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+						BackgroundColor3 = Color3.fromRGB(22, 20, 45)
+					}):Play()
+				end)
+
+
+
+
+
 				local toggled = false
 				ToggleInteract.MouseButton1Click:Connect(function()
 					toggled = not toggled
