@@ -844,12 +844,12 @@ TabImage.Image = "rbxassetid://10272150497"
 			
 				Toggle.MouseEnter:Connect(function()
 					game.TweenService:Create(Toggle, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
-						BackgroundColor3 = Color3.fromRGB(107, 89, 222)
+						BackgroundColor3 = Color3.fromRGB(100, 80, 200)
 					}):Play()
 				end)
 				Toggle.MouseLeave:Connect(function()
 					game.TweenService:Create(Toggle, TweenInfo.new(.2, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
-						BackgroundColor3 = Color3.fromRGB(22, 20, 45)
+						BackgroundColor3 = Color3.fromRGB(23, 20, 41)
 					}):Play()
 				end)
 
