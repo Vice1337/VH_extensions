@@ -772,7 +772,7 @@ TabImage.Image = "rbxassetid://10272150497"
 			function items:Toggle(side, text, callback)
 				local Toggle = Instance.new("Frame")
 				Toggle.Name = tostring(text)
-				Toggle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+				Toggle.BackgroundColor3 = Color3.fromRGB(23, 20, 41)
 				Toggle.BackgroundTransparency = 0
 				Toggle.BorderColor3 = Color3.fromRGB(27, 42, 53)
 				Toggle.BorderSizePixel = 0
